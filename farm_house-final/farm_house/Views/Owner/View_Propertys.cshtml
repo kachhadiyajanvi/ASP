@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "View_Propertys";
+    Layout = "~/Views/Shared/OwnerLayout.cshtml";
+}
+
+<link href="~/css/all.min.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>View Properties</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">View Properties</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form class="search-form form-inline w-100" method="get">
+                                <input type="text" name="search" class="form-control flex-grow-1 mr-2" placeholder="Search by name..." />                 <input type="submit" name="submit" value="Search" class="btn btn-dark">
+                            </form>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>City</th>
+                                        <th>Category</th>
+                                        <th>Banner Image</th>
+                                        <th>Address</th>
+                                        <th>Rate</th>
+                                        <th>Delete</th>
+                                        <th>Update</th>
+                                        <th>More Details</th>
+ 
+                                        @foreach (System.Data.DataRow dr in ViewBag.data.Rows)
+                                        {
+                                        <tr>
+                                            <td>@dr["id"].ToString()</td>
+                                            <td>@dr["name"].ToString()</td>
+                                            <td>@dr["city"].ToString()</td>
+                                            <td>@dr["category"].ToString()</td>
+                                            <td><a href="~/image/@dr["id"].ToString()"> <img src="~/image/@dr["image"].ToString()" width="100px"></a></td>
+                                            <td>@dr["address"].ToString()</td>
+                                            <td>@dr["rate"].ToString()</td>
+                                            @* <td>@dr["facilities"].ToString()</td> *@
+                                            @* <td>@dr["stat"].ToString()</td> *@
+                                            <td><a href="Delete_Owner/@dr["id"].ToString()" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="Select_Owner/@dr["id"].ToString()" class="btn btn-primary">Update</a></td>
+                                            <td><a href="View_Details/@dr["id"].ToString()"><i class="fa-solid fa-eye" style="color: #4105e6;"></i></a></td>
+                                        </tr>
+                                        } 
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

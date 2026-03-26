@@ -1,0 +1,620 @@
+﻿
+@{
+    ViewData["Title"] = "Property_details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+
+
+<style>
+    .main-image {
+    height: auto;
+    max-width: 775px;
+    object-fit: cover;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .farm-image {
+    max-width: 180px;
+    height: auto;
+    max-height: 100px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin-right: 15px;
+    }
+
+    .info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    }
+
+    .main-icon {
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    }
+
+    .pb-3 {
+    display: flex;
+    align-items: center;
+    }
+
+    .all_icons {
+    padding-top: 160px;
+    padding-left: 50px;
+    }
+
+    .label i {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    padding: 10px;
+    margin-left: 30px;
+    font-size: 24px;
+    color: #333;
+    }
+
+    .main-content h4 {
+    margin-bottom: 10px !important;
+    padding-bottom: 10px !important;
+    }
+
+    /* payment */
+    .payment {
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px 30px;
+    }
+
+    .charges {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+
+    .summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    }
+
+    .booking {
+    background-color: #ffc107;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    border: none;
+    color: #fff;
+    }
+
+    .check {
+    padding: 10px 50px;
+    width: 100%;
+    }
+</style>
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="#">Home</a> / Single Property</span>
+                <h3>Single Property</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-property section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+                {
+                    <div class="main-image">
+                    <img id="mainImage" src="~/image/@dr["image"].ToString()" alt="" style="">
+                    </div>
+                    <ul class="pt-5">
+                        <li>
+                        <img src="" class="farm-image" style="cursor: pointer;">
+                        <img src="~/image/@dr["image"].ToString()" class="farm-image" style="cursor: pointer;">
+                        </li>
+                    </ul>
+                    <div class="main-content">
+                        <span class="category"></span>
+                        <h4><a>@dr["address"].ToString()</a></h4>
+                    </div>
+
+
+                    <div class="property-details">
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">FarmName:</span>
+                            <span>@dr["name"].ToString()</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">City:</span>
+                            <span>@dr["city"].ToString()</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">Rate:</span>
+                            <span>@dr["rate"].ToString()</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">Location Link:</span>
+                            <span>
+                                <a href="" target="_blank" rel="noopener noreferrer">
+                                    <span>@dr["location_link"].ToString()</span>
+                                </a>
+                            </span>
+                        </div>
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">Rules:</span>
+                            <span>@dr["rules"].ToString()</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="fw-bold text-secondary">Space (sq ft):</span>
+                            <span>@dr["space"].ToString()</span>
+                        </div>
+                    </div>
+                } 
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Best useful links ?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How does this work ?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Why is Villa the best ?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+            <div class="col-lg-4">
+               @*  @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+                { *@
+                    <form id="booking-form" action="" method="post">
+                        <input type="hidden" name="property_id" value=" ">
+                        <input type="hidden" name="user_id" value="123"> <!-- Example user ID -->
+                        <input type="hidden" id="total-rent" name="total_rent" value="  ">
+
+
+                        <div class="payment">
+                            <h2 class="fw-bold">        </h2>
+                            <div class="charges">Inclusive of all charges</div>
+
+                            <div>
+                                <span class="fw-bold">Check In Date:</span>
+                                <input type="date" id="start" name="checkin_date" class="check" />
+                            </div>
+
+                            <div class="mt-3">
+                                <span class="fw-bold">Check Out Date:</span>
+                                <input type="date" id="end" name="checkout_date" class="check" />
+                            </div>
+
+                            <select class="mt-3" name="daytime_slot">
+                                <option value="" disabled selected>Select Day Time</option>
+                                <option value="full-day">Full Day (24 Hour)</option>
+                            </select>
+
+                            <div class="mt-3">
+                                <div class="summary-item"><span class="fw-bold">Property Rent :</span><span>        </span></div>
+                            </div>
+
+                        <a asp-action="Login" asp-controller="Home" class="booking p-2 mt-4" name="submit">Request Booking</a>
+                        </div>
+                    </form>
+                @* } *@
+                <div class="all_icons">
+                    <h4 class="m-3">Facilities</h4>
+                    <div class="main-icon">
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-motorcycle"></i>
+                            </span>
+                            <span class="ps-5">Free Parking</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-cloud"></i>
+                            </span>
+                            <span class="ps-5">Air Conditioner</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-person-swimming"></i>
+                            </span>
+                            <span class="ps-5">Swimming Pool</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-bed"></i>
+                            </span>
+                            <span class="ps-5">Bedrooms</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+                            <span class="ps-5">Kitchen</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-temperature-high"></i>
+                            </span>
+                            <span class="ps-5">Refrigerator</span>
+                        </div>
+                        <div class="pb-3">
+                            <span class="label">
+                                <i class="fa-solid fa-couch"></i>
+                            </span>
+                            <span class="ps-5">Sofa Chair</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="section best-deal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <h6>| Best Deal</h6>
+                    <h2>Find Your Best Deal Right Now!</h2>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="tabs-content">
+                    <div class="row">
+                       @*  @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+                        { *@
+                        <div class="nav-wrapper">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tab" data-bs-toggle="tab" data-bs-target="#content-<?php echo $category_id; ?>" type="button" role="tab" aria-controls="content-<?php echo $category_id; ?>" aria-selected="<?php echo $aria_selected; ?>">
+                                            <span class="category">         </span>
+
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade <" id="content" role="tabpanel" aria-labelledby="tab-         ">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="info-table">
+                                            <ul>
+                                                <li>Total Flat Space <span><span>       </span></li>
+                                                <li>Floor number <span>2th</span></li>
+                                                <li>Number of rooms <span>4</span></li>
+                                                <li>Parking Available <span>Yes</span></li>
+                                                <li>Payment Process <span>Bank</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="~/image/      " alt="">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h4>Extra Info About Property</h4>
+                                        <p>
+                                            lcome to farmstay hub Farmhouse, a With space to accommodate up to guests, our farmhouse offers beautifully bedrooms, including a luxurious master suite with a private balcony overlooking the serene landscape.
+                                            <br><br> The farmhouse features 3 full bathrooms, a fully equipped kitchen with state-of-the-art appliances, and a cozy living room with a traditional stone fireplace
+                                        </p>
+                                        <div class="icon-button">
+                                            <a href="property-details.php"><i class="fa fa-calendar"></i> Schedule a visit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @* } *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="#">Home</a>  /  Single Property</span>
+                <h3>Single Property</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-property section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="main-image">
+                    <img src="assets/images/single-property.jpg" alt="">
+                </div>
+                <div class="main-content">
+                    <span class="category">Apparment</span>
+                    <h4>24 New Street Miami, OR 24560</h4>
+                    <p>
+                        Get <strong>the best villa agency</strong> HTML CSS Bootstrap Template for your company website. TemplateMo provides you the <a href="https://www.google.com/search?q=best+free+css+templates" target="_blank">best free CSS templates</a> in the world. Please tell your friends about it. Thank you. Cloud bread kogi bitters pitchfork shoreditch tumblr yr succulents single-origin coffee schlitz enamel pin you probably haven't heard of them ugh hella.
+
+                        <br><br>When you look for free CSS templates, you can simply type TemplateMo in any search engine website. In addition, you can type TemplateMo Digital Marketing, TemplateMo Corporate Layouts, etc. Master cleanse +1 intelligentsia swag post-ironic, slow-carb chambray knausgaard PBR&B DSA poutine neutra cardigan hoodie pop-up.
+                    </p>
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Best useful links ?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                How does this work ?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Why is Villa the best ?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="info-table">
+                    <ul>
+                        <li>
+                            <img src="assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                            <h4>450 m2<br><span>Total Flat Space</span></h4>
+                        </li>
+                        <li>
+                            <img src="assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
+                            <h4>Contract<br><span>Contract Ready</span></h4>
+                        </li>
+                        <li>
+                            <img src="assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
+                            <h4>Payment<br><span>Payment Process</span></h4>
+                        </li>
+                        <li>
+                            <img src="assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
+                            <h4>Safety<br><span>24/7 Under Control</span></h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section best-deal">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="section-heading">
+                    <h6>| Best Deal</h6>
+                    <h2>Find Your Best Deal Right Now!</h2>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="tabs-content">
+                    <div class="row">
+                        <div class="nav-wrapper ">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="appartment-tab" data-bs-toggle="tab" data-bs-target="#appartment" type="button" role="tab" aria-controls="appartment" aria-selected="true">Appartment</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="villa-tab" data-bs-toggle="tab" data-bs-target="#villa" type="button" role="tab" aria-controls="villa" aria-selected="false">Villa House</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="penthouse-tab" data-bs-toggle="tab" data-bs-target="#penthouse" type="button" role="tab" aria-controls="penthouse" aria-selected="false">Penthouse</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="appartment" role="tabpanel" aria-labelledby="appartment-tab">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="info-table">
+                                            <ul>
+                                                <li>Total Flat Space <span>540 m2</span></li>
+                                                <li>Floor number <span>3</span></li>
+                                                <li>Number of rooms <span>8</span></li>
+                                                <li>Parking Available <span>Yes</span></li>
+                                                <li>Payment Process <span>Bank</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="assets/images/deal-01.jpg" alt="">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h4>All Info About Apartment</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                                        <div class="icon-button">
+                                            <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="info-table">
+                                            <ul>
+                                                <li>Total Flat Space <span>250 m2</span></li>
+                                                <li>Floor number <span>26th</span></li>
+                                                <li>Number of rooms <span>5</span></li>
+                                                <li>Parking Available <span>Yes</span></li>
+                                                <li>Payment Process <span>Bank</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="assets/images/deal-02.jpg" alt="">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h4>Detail Info About New Villa</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                                        <div class="icon-button">
+                                            <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="penthouse" role="tabpanel" aria-labelledby="penthouse-tab">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <div class="info-table">
+                                            <ul>
+                                                <li>Total Flat Space <span>320 m2</span></li>
+                                                <li>Floor number <span>34th</span></li>
+                                                <li>Number of rooms <span>6</span></li>
+                                                <li>Parking Available <span>Yes</span></li>
+                                                <li>Payment Process <span>Bank</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="assets/images/deal-03.jpg" alt="">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h4>Extra Info About Penthouse</h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut Kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologistlabore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                                        <div class="icon-button">
+                                            <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ *@

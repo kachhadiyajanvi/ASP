@@ -1,0 +1,249 @@
+﻿
+@{
+    ViewData["Title"] = "Add_Propertys";
+    Layout = "~/Views/Shared/OwnerLayout.cshtml";
+}
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    .quantity-select {
+        display: none;
+        margin-left: 10px;
+    }
+</style>
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add Property</h1>
+                    <h3></h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Add Property</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-dark">
+                    <div class="card-header"></div>
+                    <form method="post" enctype="multipart/form-data" id="frm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="f_name">Farm Name</label>
+                                        <input type="text" name="f_name" class="form-control" id="f_name" placeholder="name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <select name="city" class="form-control" id="city" >
+                                        @foreach (System.Data.DataRow dr in ViewBag.data.Rows)
+                                        {
+                                            <option value="@dr["city_name"].ToString()">@dr["city_name"].ToString()</option>
+                                        }
+                                        </select>
+                                        <span style="color: red; display: none;">Please Select City...!</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="category">Category</label>
+                                        <select name="category" class="form-control" id="category">
+                                             @foreach (System.Data.DataRow dr in ViewBag.ds3.Rows)
+                                            {
+                                                <option value="@dr["category"].ToString()">@dr["category"].ToString()</option>
+                                            } 
+                                            <span disabled selected>Select a category</span>
+                                        </select>
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="wd_rate">Rate</label>
+                                        <input type="text" name="wd_rate" class="form-control" id="wd_rate" placeholder="weekend day rate" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bedrooms">Bedroom</label>
+                                            <input type="text" name="bedrooms" class="form-control" id="bedrooms" placeholder="Enter Numbers of Bedrooms" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bathrooms">Bathroom</label>
+                                            <input type="text" name="bathrooms" class="form-control" id="bathrooms" placeholder="Enter Numbers of Bathrooms" required />
+                                    </div>
+                                   </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image">Image</label>
+                                        <input type="file" name="image" class="form-control" required>
+                                  
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="images">Gallery Images</label>
+                                            <input type="file" name="images" class="form-control" multiple >
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="space">Space</label>
+                                        <textarea class="form-control" name="space" rows="3" placeholder="space" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="rules">Rules</label>
+                                        <textarea class="form-control" name="rules" rows="3" placeholder="rules" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="l_link">Location Link</label>
+                                        <input type="text" class="form-control" name="l_link" placeholder="location link" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" name="address" rows="3" placeholder="address" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="facilities">Facilities</label>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility1" value="wifi">
+                                                        <label class="form-check-label" for="facility1">
+                                                            WiFi
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility2" value="parking">
+                                                        <label class="form-check-label" for="facility2">
+                                                            Parking
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility3" value="pool">
+                                                        <label class="form-check-label" for="facility3">
+                                                            Swimming Pool
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility4" value="gym">
+                                                        <label class="form-check-label" for="facility4">
+                                                            Gym
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility5" value="breakfast">
+                                                        <label class="form-check-label" for="facility5">
+                                                            Breakfast Included
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility1" value="wifi">
+                                                        <label class="form-check-label" for="facility1">
+                                                            Air Conditioning
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility2" value="parking">
+                                                        <label class="form-check-label" for="facility2">
+                                                            CCTV Security
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility3" value="pool">
+                                                        <label class="form-check-label" for="facility3">
+                                                            Photography Point
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="facility4" value="gym">
+                                                        <label class="form-check-label" for="facility4">
+                                                            Garden
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+
+
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <a href="property_list.php" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+

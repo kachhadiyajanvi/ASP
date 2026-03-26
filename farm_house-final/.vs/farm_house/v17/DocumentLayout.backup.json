@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ASP\\farm_house-final\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|d:\\asp\\farm_house-final\\farm_house\\models\\adminmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|solutionrelative:farm_house\\models\\adminmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|d:\\asp\\farm_house-final\\farm_house\\models\\aboutteammodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|solutionrelative:farm_house\\models\\aboutteammodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|d:\\asp\\farm_house-final\\farm_house\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49D0346E-39DC-4AD9-AF3B-5BBDE0E3E646}|farm_house\\farm_house.csproj|solutionrelative:farm_house\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "D:\\ASP\\farm_house-final\\farm_house\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "farm_house\\Models\\UserModel.cs",
+              "ToolTip": "D:\\ASP\\farm_house-final\\farm_house\\Models\\UserModel.cs",
+              "RelativeToolTip": "farm_house\\Models\\UserModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T17:46:01.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AboutTeamModel.cs",
+              "DocumentMoniker": "D:\\ASP\\farm_house-final\\farm_house\\Models\\AboutTeamModel.cs",
+              "RelativeDocumentMoniker": "farm_house\\Models\\AboutTeamModel.cs",
+              "ToolTip": "D:\\ASP\\farm_house-final\\farm_house\\Models\\AboutTeamModel.cs",
+              "RelativeToolTip": "farm_house\\Models\\AboutTeamModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAB2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T17:35:27.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AdminModel.cs",
+              "DocumentMoniker": "D:\\ASP\\farm_house-final\\farm_house\\Models\\AdminModel.cs",
+              "RelativeDocumentMoniker": "farm_house\\Models\\AdminModel.cs",
+              "ToolTip": "D:\\ASP\\farm_house-final\\farm_house\\Models\\AdminModel.cs",
+              "RelativeToolTip": "farm_house\\Models\\AdminModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T13:57:20.837Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

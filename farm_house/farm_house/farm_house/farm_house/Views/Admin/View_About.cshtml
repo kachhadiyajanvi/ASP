@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "View_About";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>View AboutOffer</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">View AboutOffer</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <form class="search-form form-inline w-100">
+                                <input type="text" name="search" class="form-control flex-grow-1 mr-2" placeholder="Search...">
+                                <input type="submit" name="submit" value="Search" class="btn btn-dark">
+                            </form>
+                        </div>
+
+                        <div class="card-body">
+                            <table id="example2" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Icon</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+                                        {
+                                        <tr>
+                                            <td>@dr["id"].ToString()</td>
+                                            <td>@dr["icon"].ToString()</td>
+                                            <td>@dr["title"].ToString()</td>
+                                            <td>@dr["description"].ToString()</td>
+                                            <td><a href="Delete_ab/@dr["id"].ToString()" class="btn btn-danger">Delete</a></td>
+                                            <td><a href="Update_About_Us/@dr["id"].ToString()" class="btn btn-primary">Update</a></td>
+                                        </tr>
+                                        }
+                                     </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

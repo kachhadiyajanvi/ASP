@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewData["Title"] = "Propertis";
+}
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="#">Home</a> / Properties</span>
+                <h3>Properties</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section properties">
+    <div class="container">
+        <ul class="properties-filter">
+
+            <li>
+                <a class="is_active" href="" data-filter="*">Show All</a>
+            </li>
+            @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+            {
+                <li>
+                    <a data-filter="*">@dr["category"].ToString()</a>
+                </li>
+            }
+            @* <li>
+                <a href="#!" data-filter=".str">Villa House</a>
+            </li>
+            <li>
+                <a href="#!" data-filter=".rac">Penthouse</a>
+            </li> *@
+        </ul>
+
+        <div class="row">
+            @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="item">
+                        <a href="/Home/Property_details/@dr["id"].ToString()"><img src="~/image/@dr["image"].ToString()" width="50px"></a>
+                        <span class="category">@dr["name"].ToString()</span>
+                        <h6>@dr["rate"].ToString()</h6>
+                        <h4><a href="/Home/Property_details/@dr["id"].ToString()">@dr["address"].ToString()</a></h4>
+                        <ul>
+                            <li>Bedrooms: <span>@dr["bedrooms"].ToString()</span></li>
+                            <li>Bathrooms: <span>@dr["bathrooms"].ToString()</span></li>
+                            <li>Area: <span>@dr["space"].ToString()</span></li>
+                        </ul>
+                        <div class="main-button">
+                            @* <a asp-action="Property_details" asp-controller="Home">Schedule a visit</a> *@
+                            <a href="Property_details/@dr["id"].ToString()">Schedule a visit</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @* <div class="row properties-box">
+            <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 adv">
+                <div class="item">
+                    <a asp-action="Property_details"   asp-controller="Home"><img src="assets/images/property-01.jpg" alt=""></a>
+                    <span class="category">Luxury Villa</span>
+                    <h6>$2.264.000</h6>
+                    <h4><a asp-action="Property_details"   asp-controller="Home">18 Old Street Miami, OR 97219</a></h4>
+                    <ul>
+                        <li>Bedrooms: <span>8</span></li>
+                        <li>Bathrooms: <span>8</span></li>
+                        <li>Area: <span>545m2</span></li>
+                        
+                        <li>Parking: <span>6 spots</span></li>
+                    </ul>
+                    <div class="main-button">
+                        <a asp-action="Property_details"   asp-controller="Home">Schedule a visit</a>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li><a href="#">1</a></li>
+                    <li><a class="is_active" href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">>></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    // JavaScript/jQuery for filtering properties
+    document.querySelectorAll('.properties-filter a').forEach(filter => {
+      filter.addEventListener('click', function(e) {
+        e.preventDefault();
+        const filterValue = this.getAttribute('data-filter');
+
+        document.querySelectorAll('.properties-filter a').forEach(a => a.classList.remove('is_active'));
+        this.classList.add('is_active');
+
+        document.querySelectorAll('.properties-items').forEach(item => {
+          if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+</script>

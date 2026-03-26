@@ -1,0 +1,132 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(assets/images/banner-02.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            background-size: cover;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url(web\ image/banner-02.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .signup-container {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            z-index: 1;
+        }
+
+            .signup-container h2 {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #333;
+            }
+
+            .signup-container input[type="text"],
+            .signup-container input[type="email"],
+            .signup-container input[type="password"],
+            .signup-container input[type="tel"] {
+                width: 100%;
+                padding: 10px 20px;
+                margin: 10px 0 20px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            .signup-container button[type="submit"] {
+                width: 100%;
+                background-color: #f35525;
+                color: white;
+                padding: 15px;
+                margin: 10px 0;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+                .signup-container button[type="submit"]:hover {
+                    background-color: #45a049;
+                }
+
+            .signup-container .extra-links {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+                .signup-container .extra-links a {
+                    color: #333;
+                    text-decoration: none;
+                    font-size: 14px;
+                }
+
+                    .signup-container .extra-links a:hover {
+                        text-decoration: underline;
+                    }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="signup-container">
+        <h5 style="margin:10px; color:green;"></h5>
+        <h2>Sign Up</h2>
+        <form action="" method="post">
+            <input type="text" name="name" placeholder="Enter Username" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="text" id="contact" name="contact" placeholder="Enter Contact Number" required>
+            <button type="submit" name="submit">Sign Up</button>
+            <div class="extra-links">
+                <a asp-action="Index" asp-controller="Home">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style type="text/css">
+    body {
+        font-family: 'Poppins', Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f9f9f9;
+    }
+
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .farmhouse-item {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background-color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .farmhouse-item img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .farmhouse-item h4 {
+        padding: 15px;
+        margin: 0;
+        font-size: 1.5rem;
+        color: #4CAF50;
+    }
+
+    .farmhouse-item p {
+        padding: 0 15px 15px;
+        margin: 0;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .farmhouse-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .farmhouse-item:hover img {
+        transform: scale(1.1);
+    }
+
+    .testimonial-item blockquote {
+        font-style: italic;
+        font-size: 1.1rem;
+        color: #555;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-left: 5px solid #007bff;
+        margin: 0;
+        border-radius: 5px;
+    }
+
+    .testimonial-item footer {
+        margin-top: 10px;
+        font-size: 1rem;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .owl-nav {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .owl-nav .owl-prev,
+    .owl-nav .owl-next {
+        background: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        margin: 5px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+    }
+
+    .owl-dots .owl-dot {
+        background: #007bff;
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        margin: 5px;
+        border-radius: 50%;
+    }
+
+    .farmhouse-item {
+        width: 100%;
+        height: 100%;
+        max-height: 350px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .farmhouse-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .farmhouse-item h4 {
+        margin: 10px 0 5px;
+        font-size: 1.25rem;
+    }
+
+    .farmhouse-item p {
+        margin: 0;
+        font-size: 1rem;
+        color: #555;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="breadcrumb"><a href="#">Home</a> / Blog</span>
+                <h3>Blog </h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<main class="container">
+    <section id="farmhouses" class="section-padding">
+        <div class="section-title">
+            <h2>Available Farmhouses</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                @foreach (System.Data.DataRow dr in ViewBag.ds.Rows)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="farmhouse-item">
+                        <img src="~/image/@dr["image"].ToString()" width="50px" alt="Farmhouse 1">
+                            <h4>@dr["title"].ToString()</h4>
+                            <p>@dr["description"].ToString()</p>
+                        </div>
+                    </div>
+                }
+            </div> 
+        </div>
+    </section>
+
+    <section id="testimonials" class="section-padding">
+        <div class="section-title">
+            <h2>What Our Guests Say</h2>
+        </div>
+        <div class="container">
+            <div class="owl-carousel testimonials-slider">
+                <div class="testimonial-item">
+                    <blockquote>
+                        <p>"Our stay at the Cozy Country Farmhouse was absolutely wonderful. The modern amenities blended perfectly with the rustic charm of the countryside. Highly recommend!"</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial-item">
+                    <blockquote>
+                        <p>"The Luxury Farmhouse Retreat was everything we hoped for and more. The views were breathtaking and the service was top-notch. We'll definitely be back."</p>
+                    </blockquote>
+                </div>
+                <div class="testimonial-item">
+                    <blockquote>
+                        <p>"We had a fantastic time at the Rustic Farmhouse Getaway. It was the perfect spot for a family reunion. The atmosphere was warm and inviting."</p>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+
+<script>
+    $(document).ready(function() {
+        $(".testimonials-slider").owlCarousel({
+            items: 3,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true,
+            nav: true,
+            dots: true,
+            margin: 10
+        });
+    });
+</script>

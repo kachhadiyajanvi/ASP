@@ -1,0 +1,227 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmhouse Booking</title>
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-image: url('assets/images/banner-02.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/banner-02.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        .booking-container {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .booking-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .booking-container input[type="text"],
+        .booking-container input[type="tel"],
+        .booking-container input[type="date"],
+        .booking-container select {
+            width: 100%;
+            padding: 10px 20px;
+            margin: 10px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .booking-container button[type="submit"] {
+            width: 100%;
+            background-color: #f35525;
+            color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .booking-container button[type="submit"]:hover {
+            background-color: #d34723;
+        }
+
+        .booking-container h5 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: green;
+        }
+
+       
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="booking-container">
+        <p><strong>Note:</strong> You can only cancel your booking if it's at least 3 days before your check-in date.</p>
+       
+        <h2>Farmhouse  @ViewBag.query</h2>
+        <form id="bookingForm" action="" method="POST">
+            <input type="text" name="user_name" value="@ViewBag.farm_name" readonly>
+            <input type="text" name="contact" value="@ViewBag.contact" readonly>
+            <div style="display: flex; gap: 20px;">
+                <div>
+                    <label for="checkin_date">Check-in Date:</label>
+                    <input type="date" id="checkin_date" name="checkin_date" placeholder="Check-in Date" required>
+                </div>
+                <div>
+                    <label for="checkout_date">Check-out Date:</label>
+                    <input type="date" id="checkout_date" name="checkout_date" placeholder="Check-out Date" required>
+                </div>
+            </div>
+            <select name="daytime_slot" id="daytime_slot">
+                <option value="" disabled selected>Select Day Time</option>
+                <option value="24 Hour">24 Hour</option>
+            </select>
+            <input type="text" name="weekend_rate" placeholder="Total Rent" value="@ViewBag.price" readonly required>
+
+            <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
+            <!-- <button type="button" id="payButton">Pay and Book Now</button> -->
+            <button type="submit" name="submit" >Pay and Book Now</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    document.getElementById('payButton').onclick = function(e) {
+
+        var cin_date = document.getElementById("checkin_date").value;
+        var co_date = document.getElementById("checkout_date").value;
+        var daytime_slot = document.getElementById("daytime_slot").value;
+
+        var options = {
+            "key": "rzp_test_BsGZogGZTxiRgx",
+            "amount": @ViewBag.price*100,
+            "currency": "INR",
+            "name": "Farmhouse Booking",
+            "description": "Booking for Farmhouse",
+            "image": "https://yourwebsite.com/logo.png",
+            "handler": function(response) {
+                var data = document.getElementById('razorpay_payment_id').value = response.razorpay_payment_id;
+
+                $(document).ready(function() {
+                    $.ajax({
+                        type: "post",
+                        url: "payment_ajax.php",
+                        data: {
+                            "payment_id": data,
+                            "cin_date": cin_date,
+                            "co_date": co_date,
+                            "daytime_slot": daytime_slot
+                        },
+                        success: function() {
+                            window.location.href = "index.php";
+                        }
+                    })
+                })
+                document.getElementById('bookingForm').submit();
+            },
+            "prefill": {
+                "name": "<?php echo $user_name; ?>",
+                "contact": "<?php echo $contact; ?>"
+            },
+            "theme": {
+                "color": "#f35525"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+        e.preventDefault();
+    };
+
+    function validateDates() {
+        var checkinDate = new Date(document.getElementById('checkin_date').value);
+        var checkoutDateInput = document.getElementById('checkout_date');
+        var checkoutDate = new Date(checkoutDateInput.value);
+        var errorMessage = document.getElementById('error-message');
+
+        if (checkinDate) {
+            var minCheckoutDate = new Date(checkinDate);
+            minCheckoutDate.setHours(minCheckoutDate.getHours() + 24);
+
+            var minDateStr = minCheckoutDate.toISOString().split('T')[0];
+            checkoutDateInput.setAttribute('min', minDateStr);
+
+            if (checkoutDateInput.value && checkoutDate > minCheckoutDate) {
+                alert('Check-out date can only be selected up to 24 hours from the check-in date.');
+                checkoutDateInput.value = "";
+                checkoutDateInput.focus();
+            } else {
+                checkoutDateInput.classList.remove('invalid-date');
+                errorMessage.textContent = "";
+            }
+        }
+    }
+
+    window.onload = function() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+        document.getElementById('checkin_date').setAttribute('min', today);
+
+        document.getElementById('checkin_date').addEventListener('change', function() {
+            validateDates();
+        });
+
+        document.getElementById('checkout_date').addEventListener('change', function() {
+            validateDates();
+        });
+
+    }
+</script>
